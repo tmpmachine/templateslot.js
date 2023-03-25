@@ -6,9 +6,15 @@ Include in your application :
 ```html
 <script src="https://cdn.jsdelivr.net/gh/tmpmachine/templateslot.js@v1.0.0/templateslot.js"></script>
 ```
+```
+https://cdn.jsdelivr.net/gh/tmpmachine/templateslot.js@v1.0.0/templateslot.js
+```
 or use minified version :
 ```html
 <script src="https://cdn.jsdelivr.net/gh/tmpmachine/templateslot.js@v1.0.0/templateslot.min.js"></script>
+```
+```
+https://cdn.jsdelivr.net/gh/tmpmachine/templateslot.js@v1.0.0/templateslot.min.js
 ```
 
 ## Method & Dictionary
@@ -43,12 +49,14 @@ options
 	  },
 	};
 
+	let docFrag = document.createDocumentFragment()
 	let el = window.templateSlot.fill({
 	  data: inputData, 
 	  template: document.querySelector('#tmp-list-posts').content.cloneNode(true), 
 	});
 	
-	// document.body.append(el);
+	docFrag.append(el);
+	document.body.append(docFrag);
 </script>
 ```
 
@@ -72,6 +80,7 @@ options
 	  },
 	};
 
+	let docFrag = document.createDocumentFragment()
 	let el = window.templateSlot.fill({
 	  data: inputData, 
 	  template: document.querySelector('#tmp-list-posts').content.cloneNode(true), 
@@ -83,7 +92,8 @@ options
 	  },
 	});
 	
-	// document.body.append(el);
+	docFrag.append(el);
+	document.body.append(docFrag);
 </script>
 ```
 
@@ -112,10 +122,12 @@ options
 	  },
 	};
 
+	let docFrag = document.createDocumentFragment()
 	let el = window.templateSlot.fill({
 	  data: inputData, 
 	  template: document.querySelector('#tmp-list-posts').content.cloneNode(true), 
 	});
 	
-	// document.body.append(el);
+	docFrag.append(el);
+	document.body.append(docFrag);
 </script>
