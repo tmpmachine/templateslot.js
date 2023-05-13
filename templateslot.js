@@ -44,6 +44,9 @@ window.templateSlot = (function() {
 	
 	let docFrag = document.createDocumentFragment();
 	if (Array.isArray(data)) {
+	   if (data.length == 1 && Object.is(data[0], undefined)) {
+	     return docFrag;
+	   }
 	  for (let d of data) {
 		let el = fillSlotDepth(d, templateEl.cloneNode(true), modifierFunc, depth + 1, errorLogs);
 		
