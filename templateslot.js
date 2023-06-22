@@ -40,7 +40,7 @@ window.templateSlot = (function() {
 	return el;
   };
   
-  function fillSlotDepth(data, templateEl, modifierFunc, depth, errorLogs) {
+  function fillSlotDepth(data, templateEl, modifierFunc, depth, errorLogs, templateId) {
 	
 	let docFrag = document.createDocumentFragment();
 	if (Array.isArray(data)) {
@@ -48,12 +48,7 @@ window.templateSlot = (function() {
 	     return docFrag;
 	   }
 	  for (let d of data) {
-		let el = fillSlotDepth(d, templateEl.cloneNode(true), modifierFunc, depth + 1, errorLogs);
-		
-		if (depth == 0 && modifierFunc) {
-		  modifierFunc(templateEl, d);
-		}
-		
+		let el = fillSlotDepth(d, templateEl.cloneNode(true), modifierFunc, depth + 1, errorLogs, templateId);
 		docFrag.append(el)
 	  }
 	  return docFrag
@@ -76,7 +71,7 @@ window.templateSlot = (function() {
 			  })
 			}
 		  }
-		  let elRes = fillSlotDepth(slotData, document.querySelector(templateId).content.cloneNode(true), modifierFunc, depth, errorLogs);
+		  let elRes = fillSlotDepth(slotData, document.querySelector(templateId).content.cloneNode(true), modifierFunc, depth, errorLogs, templateId);
 		  el.append(elRes);
 		} else {
 		  if (!errorLogs.find(x => x.type == 'not-found' && 
@@ -97,8 +92,8 @@ window.templateSlot = (function() {
 	  }
 	}
 	
-	if (depth == 0 && modifierFunc) {
-	  modifierFunc(templateEl, data);
+	if (modifierFunc) {
+	  modifierFunc(templateEl, data, templateId);
 	}
 	
 	return templateEl;
